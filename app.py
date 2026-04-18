@@ -4,6 +4,7 @@ import secrets
 from flask import Flask, redirect, render_template, request, session
 
 from database.reset_db import reset_db
+from bugs.bug_loader import is_bug_enabled
 
 from backend.api.routes import bp as api_bp
 from backend.auth.routes import bp as auth_bp
@@ -35,7 +36,11 @@ def get_current_user_id() -> int | None:
 
 @app.context_processor
 def inject_auth_helpers():
-    return {"is_logged_in": is_logged_in, "get_current_user_id": get_current_user_id}
+    return {
+        "is_logged_in": is_logged_in,
+        "get_current_user_id": get_current_user_id,
+        "is_bug_enabled": is_bug_enabled,
+    }
 
 
 @app.before_request

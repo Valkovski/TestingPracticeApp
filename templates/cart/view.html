@@ -12,7 +12,12 @@
         <h1 class="h3 mb-0">Cart</h1>
         <div class="d-flex gap-2">
           <a class="btn btn-outline-secondary btn-sm" href="/products/">Products</a>
-          <a class="btn btn-outline-secondary btn-sm" href="/orders/checkout">Checkout</a>
+          {% set allow_empty_checkout = is_bug_enabled("bug_cart_allow_checkout_when_empty") %}
+          {% if cart_items or allow_empty_checkout %}
+            <a class="btn btn-outline-secondary btn-sm" href="/orders/checkout">Checkout</a>
+          {% else %}
+            <a class="btn btn-outline-secondary btn-sm disabled" href="#" tabindex="-1" aria-disabled="true">Checkout</a>
+          {% endif %}
         </div>
       </nav>
 

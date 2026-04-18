@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Water bottle">
+  <rect x="32" y="32" width="448" height="448" rx="28" fill="#f8f9fa" stroke="#dee2e6"/>
+  <g fill="none" stroke="#0d6efd" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M220 128h72"/>
+    <path d="M236 128v32h40v-32"/>
+    <path d="M208 180h96"/>
+    <path d="M210 180c-18 20-26 44-26 78v122c0 62 32 100 72 100s72-38 72-100V258c0-34-8-58-26-78" fill="#e7f1ff"/>
+    <path d="M210 270h92"/>
+    <path d="M210 314h92"/>
+  </g>
+</svg>
+

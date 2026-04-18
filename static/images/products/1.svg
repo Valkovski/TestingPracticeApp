@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="USB-C cable">
+  <rect x="32" y="32" width="448" height="448" rx="28" fill="#f8f9fa" stroke="#dee2e6"/>
+  <g fill="none" stroke="#0d6efd" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="96" y="212" width="92" height="88" rx="18" fill="#e7f1ff" stroke="#0d6efd"/>
+    <rect x="324" y="212" width="92" height="88" rx="18" fill="#e7f1ff" stroke="#0d6efd"/>
+    <path d="M188 256c32 0 40-44 68-44s36 44 68 44"/>
+    <path d="M120 246h44"/>
+    <path d="M348 246h44"/>
+  </g>
+</svg>
+

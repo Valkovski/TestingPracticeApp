@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Phone case">
+  <rect x="32" y="32" width="448" height="448" rx="28" fill="#f8f9fa" stroke="#dee2e6"/>
+  <g fill="none" stroke="#6610f2" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="182" y="112" width="148" height="288" rx="26" fill="#f2edff"/>
+    <path d="M236 144h40"/>
+    <circle cx="256" cy="366" r="10" fill="#6610f2" stroke="none"/>
+    <path d="M206 206h100"/>
+    <path d="M206 250h100"/>
+  </g>
+</svg>
+

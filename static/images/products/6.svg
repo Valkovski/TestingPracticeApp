@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Pen set">
+  <rect x="32" y="32" width="448" height="448" rx="28" fill="#f8f9fa" stroke="#dee2e6"/>
+  <g fill="none" stroke="#20c997" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 156l86 86-138 138H68v-30l82-82" fill="#e8fbf5"/>
+    <path d="M216 222l110-110 46 46-110 110"/>
+    <path d="M330 110l46 46"/>
+    <path d="M292 266l46 46"/>
+  </g>
+</svg>
+

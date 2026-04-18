@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
 from backend.orders import service
+from bugs.bug_loader import is_bug_enabled
 
 
 bp = Blueprint("orders", __name__, url_prefix="/orders")
@@ -20,6 +21,8 @@ def checkout_page():
         return response
 
     summary = service.get_checkout_summary(user_id)
+    if not summary["items"] and not is_bug_enabled("bug_orders_allow_empty_checkout_page"):
+        return redirect(url_for("cart.view_cart", message="Cart is empty."))
     message = request.args.get("message", "")
     return render_template("orders/checkout.html", summary=summary, message=message)
 
@@ -45,4 +48,3 @@ def history():
     orders = service.get_order_history(user_id)
     message = request.args.get("message", "")
     return render_template("orders/history.html", orders=orders, message=message)
-

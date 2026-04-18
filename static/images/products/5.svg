@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Notebook">
+  <rect x="32" y="32" width="448" height="448" rx="28" fill="#f8f9fa" stroke="#dee2e6"/>
+  <g fill="none" stroke="#0dcaf0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="156" y="140" width="220" height="260" rx="18" fill="#e6fbff"/>
+    <path d="M196 180h140"/>
+    <path d="M196 224h140"/>
+    <path d="M196 268h140"/>
+    <path d="M196 312h96"/>
+    <path d="M156 168h-22"/>
+    <path d="M156 212h-22"/>
+    <path d="M156 256h-22"/>
+    <path d="M156 300h-22"/>
+  </g>
+</svg>
+

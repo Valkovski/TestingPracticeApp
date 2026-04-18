@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Bluetooth speaker">
+  <rect x="32" y="32" width="448" height="448" rx="28" fill="#f8f9fa" stroke="#dee2e6"/>
+  <g fill="none" stroke="#fd7e14" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="152" y="156" width="208" height="260" rx="28" fill="#fff4e6"/>
+    <circle cx="256" cy="256" r="62"/>
+    <circle cx="256" cy="256" r="20" fill="#fd7e14" stroke="none"/>
+    <path d="M210 344h92"/>
+  </g>
+</svg>
+

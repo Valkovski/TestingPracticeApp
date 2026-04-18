@@ -23,20 +23,15 @@ def checkout(user_id: int) -> tuple[bool, str, int | None]:
     if is_bug_enabled("bug_orders_wrong_total"):
         total_cents = sum(item["unit_price_cents"] for item in summary["items"])
 
-    order_id = repository.create_order(
+    ok, message, order_id = repository.create_order_from_cart(
         user_id=user_id,
         status="placed",
         total_cents=total_cents,
         created_at=created_at,
+        decrement_stock=not is_bug_enabled("bug_orders_stock_not_decremented"),
     )
-
-    for item in summary["items"]:
-        repository.add_order_item(
-            order_id=order_id,
-            product_id=item["product_id"],
-            quantity=item["quantity"],
-            unit_price_cents=item["unit_price_cents"],
-        )
+    if not ok:
+        return False, message, None
 
     if is_bug_enabled("bug_orders_duplicate_order"):
         duplicate_order_id = repository.create_order(
@@ -53,8 +48,7 @@ def checkout(user_id: int) -> tuple[bool, str, int | None]:
                 unit_price_cents=item["unit_price_cents"],
             )
 
-    repository.clear_cart(user_id)
-    return True, "Order placed.", order_id
+    return True, message, order_id
 
 
 def get_order_history(user_id: int) -> list[dict]:

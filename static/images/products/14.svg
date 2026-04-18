@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Webcam">
+  <rect x="32" y="32" width="448" height="448" rx="28" fill="#f8f9fa" stroke="#dee2e6"/>
+  <g fill="none" stroke="#212529" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="132" y="176" width="248" height="168" rx="28" fill="#e9ecef"/>
+    <circle cx="256" cy="260" r="50"/>
+    <circle cx="256" cy="260" r="16" fill="#212529" stroke="none"/>
+    <path d="M190 360h132"/>
+    <path d="M216 360v40h80v-40"/>
+  </g>
+</svg>
+

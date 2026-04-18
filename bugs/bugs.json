@@ -1,11 +1,3 @@
 {
-  "bug_products_sort_desc_ignored": {
-    "enabled": false,
-    "description": "Sorting by price_desc is ignored in product listing."
-  },
-  "bug_cart_total_rounding": {
-    "enabled": false,
-    "description": "Cart total rounding sometimes differs by 1 cent."
-  }
+  "all_enabled": false
 }
-
