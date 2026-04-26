@@ -65,10 +65,9 @@ def test_checkout_blocks_oversell_when_bug_disabled(client):
     finally:
         con.close()
 
-    client.post("/cart/add", data={"product_id": "1", "quantity": "2"})
-    resp = client.post("/orders/checkout", follow_redirects=True)
+    resp = client.post("/cart/add", data={"product_id": "1", "quantity": "2"}, follow_redirects=True)
     assert resp.status_code == 200
-    assert b"Not enough stock" in resp.data
+    assert b"Not enough stock available." in resp.data
 
     con = sqlite3.connect(str(ROOT_DIR / "app.db"))
     try:
@@ -79,5 +78,5 @@ def test_checkout_blocks_oversell_when_bug_disabled(client):
         con.close()
 
     assert order_count == 0
-    assert cart_count == 1
+    assert cart_count == 0
     assert stock_qty == 1

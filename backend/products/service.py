@@ -3,7 +3,7 @@ from bugs.bug_loader import is_bug_enabled
 
 
 def get_product_list(category: str | None, sort: str | None) -> dict:
-    chosen_sort = sort if sort in {"price_asc", "price_desc"} else "price_asc"
+    chosen_sort = sort if sort in {"price_asc", "price_desc", "name_asc", "name_desc"} else "price_asc"
     categories = repository.list_categories()
 
     effective_category = category

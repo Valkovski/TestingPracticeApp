@@ -26,6 +26,19 @@ def get_cart_item_by_user_and_product(user_id: int, product_id: int) -> dict | N
         connection.close()
 
 
+def get_cart_quantity_for_product(user_id: int, product_id: int) -> int:
+    connection = get_db_connection()
+    try:
+        row = connection.execute(
+            "SELECT COALESCE(SUM(quantity), 0) AS total_quantity "
+            "FROM cart_items WHERE user_id = ? AND product_id = ?",
+            (user_id, product_id),
+        ).fetchone()
+        return int(row["total_quantity"] or 0)
+    finally:
+        connection.close()
+
+
 def insert_cart_item(user_id: int, product_id: int, quantity: int, added_at: str) -> int:
     connection = get_db_connection()
     try:
@@ -85,4 +98,3 @@ def list_cart_items(user_id: int) -> list[dict]:
         return [dict(row) for row in rows]
     finally:
         connection.close()
-

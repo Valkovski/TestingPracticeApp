@@ -13,11 +13,48 @@
           <span class="badge text-bg-primary">Shop</span>
           <h1 class="h3 mb-0">Products</h1>
         </div>
-        <div class="d-flex gap-2">
+        <div class="d-flex align-items-center gap-2">
+          <button
+            class="navbar-toggler border"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#profileSidebar"
+            aria-controls="profileSidebar"
+            aria-label="Open profile sidebar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <a class="btn btn-outline-secondary btn-sm" href="/cart/">Cart</a>
           <a class="btn btn-outline-secondary btn-sm" href="/orders/history">Orders</a>
         </div>
       </nav>
+
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="profileSidebar" aria-labelledby="profileSidebarLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h5 mb-0" id="profileSidebarLabel">Profile</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          {% if current_user %}
+            <div class="mb-4">
+              <div class="text-muted small">Name</div>
+              <div class="fw-semibold">{{ current_user.full_name }}</div>
+            </div>
+            <div class="mb-4">
+              <div class="text-muted small">Email</div>
+              <div class="fw-semibold">{{ current_user.email }}</div>
+            </div>
+          {% else %}
+            <div class="alert alert-secondary">Profile data is not available.</div>
+          {% endif %}
+
+          <div class="d-grid gap-2">
+            <a class="btn btn-outline-primary" href="/cart/">Cart</a>
+            <a class="btn btn-primary" href="/orders/history">Orders</a>
+            <a class="btn btn-outline-danger" href="/auth/logout">Logout</a>
+          </div>
+        </div>
+      </div>
 
       <form class="row g-2 align-items-end mb-3" method="get">
         <div class="col-12 col-md-4">
@@ -34,6 +71,8 @@
           <select class="form-select" id="sort" name="sort">
             <option value="price_asc" {% if selected_sort == 'price_asc' %}selected{% endif %}>Price: Low to high</option>
             <option value="price_desc" {% if selected_sort == 'price_desc' %}selected{% endif %}>Price: High to low</option>
+            <option value="name_asc" {% if selected_sort == 'name_asc' %}selected{% endif %}>Name: A-Z</option>
+            <option value="name_desc" {% if selected_sort == 'name_desc' %}selected{% endif %}>Name: Z-A</option>
           </select>
         </div>
         <div class="col-12 col-md-4">

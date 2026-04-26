@@ -24,6 +24,10 @@ def add_item(user_id: int, product_id: int, quantity: int) -> tuple[bool, str]:
     if not product:
         return False, "Product not found."
 
+    current_qty = repository.get_cart_quantity_for_product(user_id, product_id)
+    if current_qty + quantity > product["stock_qty"]:
+        return False, "Not enough stock available."
+
     if not is_bug_enabled("bug_cart_total_rounding"):
         existing = repository.get_cart_item_by_user_and_product(user_id, product_id)
         if existing:

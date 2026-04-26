@@ -78,6 +78,47 @@ def test_products_access_after_login(client):
     assert resp.status_code == 200
 
 
+def test_products_sort_by_name_asc_and_desc(client):
+    login(client)
+
+    resp = client.get("/products/?sort=name_asc", follow_redirects=False)
+    assert resp.status_code == 200
+    body = resp.data.decode("utf-8")
+    assert body.index("Backpack") < body.index("Wireless Mouse")
+    assert body.index("Backpack") < body.index("USB-C Cable 1m")
+
+    resp = client.get("/products/?sort=name_desc", follow_redirects=False)
+    assert resp.status_code == 200
+    body = resp.data.decode("utf-8")
+    assert body.index("Wireless Mouse") < body.index("Backpack")
+    assert body.index("USB-C Cable 1m") < body.index("Backpack")
+
+
+def test_products_page_shows_profile_sidebar_data(client):
+    login(client)
+    resp = client.get("/products/", follow_redirects=False)
+    assert resp.status_code == 200
+    assert b'aria-label="Open profile sidebar"' in resp.data
+    assert b'id="profileSidebar"' in resp.data
+    assert b"Test User" in resp.data
+    assert b"test@test.com" in resp.data
+    assert b'/cart/' in resp.data
+    assert b'/orders/history' in resp.data
+    assert b'/auth/logout' in resp.data
+
+
+def test_logout_redirects_to_home_and_clears_session(client):
+    login(client)
+
+    resp = client.get("/auth/logout", follow_redirects=False)
+    assert resp.status_code == 302
+    assert resp.headers["Location"].endswith("/")
+
+    resp = client.get("/products/", follow_redirects=False)
+    assert resp.status_code == 302
+    assert resp.headers["Location"].endswith("/auth/login")
+
+
 def test_cart_add_update_remove_and_total(client):
     login(client)
 
@@ -103,6 +144,26 @@ def test_cart_add_update_remove_and_total(client):
     resp = client.post(f"/cart/remove/{cart_item_id}", follow_redirects=True)
     assert resp.status_code == 200
     assert b"Your cart is empty." in resp.data
+
+
+def test_cart_add_rejects_quantity_above_stock(client):
+    login(client)
+
+    resp = client.post(
+        "/cart/add",
+        data={"product_id": "1", "quantity": "121"},
+        follow_redirects=True,
+    )
+    assert resp.status_code == 200
+    assert b"Not enough stock available." in resp.data
+
+    con = sqlite3.connect(str(ROOT_DIR / "app.db"))
+    try:
+        cart_count = con.execute("SELECT COUNT(*) FROM cart_items WHERE user_id = 3").fetchone()[0]
+    finally:
+        con.close()
+
+    assert cart_count == 0
 
 
 def test_checkout_multiple_items_creates_order_and_clears_cart(client):

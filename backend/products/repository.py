@@ -13,7 +13,14 @@ def list_categories() -> list[str]:
 
 
 def list_products(category: str | None, sort: str) -> list[dict]:
-    order_by = "price_cents ASC" if sort == "price_asc" else "price_cents DESC"
+    if sort == "price_desc":
+        order_by = "price_cents DESC"
+    elif sort == "name_desc":
+        order_by = "name DESC"
+    elif sort == "name_asc":
+        order_by = "name ASC"
+    else:
+        order_by = "price_cents ASC"
     sql = (
         "SELECT id, name, description, category, price_cents, stock_qty "
         "FROM products "
@@ -43,4 +50,3 @@ def get_product(product_id: int) -> dict | None:
         return dict(row) if row else None
     finally:
         connection.close()
-
